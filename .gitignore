@@ -1,0 +1,16 @@
+# Ambiente
+.env
+__pycache__/
+*.pyc
+
+# Airflow
+airflow/logs/
+airflow/config/
+airflow/plugins/
+
+# Output gerado
+output/
+
+# IDE
+.vscode/
+.idea/

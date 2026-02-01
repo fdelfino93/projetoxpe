@@ -1,0 +1,23 @@
+# Requirements - Projeto Relatorios Semanais
+# ===========================================
+# Instalar com: pip install -r requirements.txt
+
+# Manipulacao de dados
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Conexao com SQL Server
+pyodbc>=4.0.39
+sqlalchemy>=2.0.0
+
+# Apache Airflow (para orquestracao)
+apache-airflow>=2.7.0
+
+# Exportacao para Excel
+openpyxl>=3.1.0
+
+# Logging e utilitarios
+python-dotenv>=1.0.0
+
+# Testes (opcional)
+pytest>=7.0.0
