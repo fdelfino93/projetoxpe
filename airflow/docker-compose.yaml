@@ -1,6 +1,8 @@
 x-airflow-common:
   &airflow-common
-  image: apache/airflow:2.8.1-python3.11
+  build:
+    context: .
+    dockerfile: Dockerfile
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
@@ -9,12 +11,18 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__WEBSERVER__SECRET_KEY: 'projetoxpe2026secretkey'
-    _PIP_ADDITIONAL_REQUIREMENTS: ''
+    # Variáveis do banco de dados
+    DB_SERVER: ${DB_SERVER:-192.168.1.226}
+    DB_DATABASE: ${DB_DATABASE:-Cond21}
+    DB_USER: ${DB_USER:-power_bi1}
+    DB_PASSWORD: ${DB_PASSWORD:-2022@Condo}
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
+    # Montar pasta dos scripts (caminho absoluto Windows)
+    - C:/Users/Fernando/Documents/PY/projetoxpe:/opt/airflow/scripts
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
